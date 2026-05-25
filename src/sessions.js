@@ -177,11 +177,11 @@ const setupSession = async (sessionId) => {
     }
 
     try {
-      client.once('ready', () => {
-        patchWWebLibrary(client).catch((err) => {
-          logger.error({ sessionId, err }, 'Failed to patch WWebJS library')
-        })
-      })
+      // client.once('ready', () => {
+      //   patchWWebLibrary(client).catch((err) => {
+      //     logger.error({ sessionId, err }, 'Failed to patch WWebJS library')
+      //   })
+      // })
       initWebSocketServer(sessionId)
       initializeEvents(client, sessionId)
       await client.initialize()

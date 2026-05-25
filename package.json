@@ -18,7 +18,7 @@
     "qr-image": "^3.2.0",
     "qrcode-terminal": "^0.12.0",
     "swagger-ui-express": "^5.0.1",
-    "whatsapp-web.js": "github:aryarfani/whatsapp-web.js#fix-update-channel-module",
+    "whatsapp-web.js": "github:aryarfani/whatsapp-web.js#better-1.34.7",
     "ws": "^8.18.3"
   },
   "devDependencies": {

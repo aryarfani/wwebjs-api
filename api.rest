@@ -1,0 +1,130 @@
+# wwebjs-api — session endpoints (see src/routes.js, src/controllers/sessionController.js)
+# Set BASE_PATH in env if your server uses a path prefix; paths below assume default (empty base).
+# @name testing
+GET https://example.com HTTP/1.1
+
+GET http://127.0.0.1:4444/session/getSessions HTTP/1.1
+
+###
+
+# @name startSession
+GET http://127.0.0.1:4444/session/start/seruni HTTP/1.1
+
+###
+
+# @name stopSession
+GET http://127.0.0.1:4444/session/stop/real HTTP/1.1
+
+###
+
+# @name statusSession
+GET http://127.0.0.1:4444/session/status/real HTTP/1.1
+
+###
+
+# @name requestPairingCode
+POST http://127.0.0.1:4444/session/requestPairingCode/real HTTP/1.1
+Content-Type: application/json
+
+{
+  "phoneNumber": "12025550108",
+  "showNotification": true
+}
+
+###
+
+# @name restartSession
+GET http://127.0.0.1:4444/session/restart/real HTTP/1.1
+
+###
+
+# @name terminateSession
+GET http://127.0.0.1:4444/session/terminate/real HTTP/1.1
+
+###
+
+# @name terminateInactiveSessions`
+GET http://127.0.0.1:4444/session/terminateInactive HTTP/1.1
+
+###
+
+# @name terminateAllSessions
+GET http://127.0.0.1:4444/session/terminateAll HTTP/1.1
+
+###
+
+# @name getPageScreenshot
+GET http://127.0.0.1:4444/session/getPageScreenshot/real HTTP/1.1
+
+###
+
+# @name getClassInfo
+GET http://127.0.0.1:4444/client/getClassInfo/seruni HTTP/1.1
+
+# @name getProfilePicUrl
+POST http://127.0.0.1:4444/contact/getProfilePicUrl/real HTTP/1.1
+Content-Type: application/json
+
+{
+  "contactId": "628211634141@c.us"
+}
+
+
+###
+
+# @name getChats
+GET http://127.0.0.1:4444/client/getChats/real HTTP/1.1
+
+###
+
+# @name fetchMessages
+
+POST http://127.0.0.1:4444/chat/fetchMessages/seruni HTTP/1.1
+Content-Type: application/json
+
+{
+  "chatId": "120363426433029174@g.us",
+  "searchOptions": {
+    "limit": 1500
+  }
+}
+
+# @name getContacts
+
+GET http://127.0.0.1:4444/client/getContacts/real HTTP/1.1
+Content-Type: application/json
+
+# @name getContactByChatId
+
+POST http://127.0.0.1:4444/chat/getContact/real HTTP/1.1
+Content-Type: application/json
+
+{
+  // "chatId": "6288216835506-1594134447@g.us"
+  // "chatId": "120363407412418723@g.us"
+  // "chatId": "240131655135475@lid"
+  // "chatId": "50264153309313@lid"
+  "chatId": "6281229148199@c.us"
+}
+
+###
+
+# @name getPollVotes
+
+POST http://127.0.0.1:4444/message/getPollVotes/real HTTP/1.1
+Content-Type: application/json
+
+{
+  "chatId": "120363407412418723@g.us",
+  "messageId": "AC62BF68E7F93EC697729D688C0001AD"
+}
+
+
+# @name getContactById
+
+POST http://127.0.0.1:4444/client/getContactById/real HTTP/1.1
+Content-Type: application/json
+
+{
+  "contactId": "628211634141@c.us"
+}

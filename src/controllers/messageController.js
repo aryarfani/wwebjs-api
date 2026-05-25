@@ -626,7 +626,35 @@ const getReactions = async (req, res) => {
 }
 
 /**
- * @function getReactions
+ * @function getPollVotes
+ * @async
+ * @description Returns poll votes for a poll message ([whatsapp-web.js Message#getPollVotes](https://docs.wwebjs.dev/Message.html#getPollVotes)).
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {string} req.params.sessionId - The session ID.
+ * @param {string} req.body.messageId - The message ID of the poll.
+ * @param {string} req.body.chatId - The chat ID.
+ * @returns {Promise} A Promise that resolves with the result of the message.getPollVotes() call.
+ * @throws {Error} If message is not found, it throws an error with the message "Message not found".
+ */
+const getPollVotes = async (req, res) => {
+  /*
+    #swagger.summary = 'Get poll votes for a poll message'
+  */
+  try {
+    const { messageId, chatId } = req.body
+    const client = sessions.get(req.params.sessionId)
+    const message = await _getMessageById(client, messageId, chatId)
+    if (!message) { throw new Error('Message not found') }
+    const result = await message.getPollVotes()
+    res.json({ success: true, result })
+  } catch (error) {
+    sendErrorResponse(res, 500, error.message)
+  }
+}
+
+/**
+ * @function getGroupMentions
  * @async
  * @description Gets groups mentioned in this message
  * @param {Object} req - The request object.
@@ -634,7 +662,7 @@ const getReactions = async (req, res) => {
  * @param {string} req.params.sessionId - The session ID.
  * @param {string} req.body.messageId - The message ID.
  * @param {string} req.body.chatId - The chat ID.
- * @returns {Promise} A Promise that resolves with the result of the message.getReactions() call.
+ * @returns {Promise} A Promise that resolves with the result of the message.getGroupMentions() call.
  * @throws {Error} If message is not found, it throws an error with the message "Message not found".
  */
 const getGroupMentions = async (req, res) => {
@@ -813,6 +841,7 @@ module.exports = {
   star,
   unstar,
   getReactions,
+  getPollVotes,
   getGroupMentions,
   edit,
   getContact,
